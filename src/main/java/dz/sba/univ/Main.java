@@ -6,8 +6,6 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
-import dz.sba.univ.controllers.LoginController;
-import dz.sba.univ.controllers.RegisterController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +16,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import dz.sba.univ.controllers.RegisterController;
+import dz.sba.univ.controllers.LoginController;
+
 public class Main extends Application {
     public final FirebaseApp app;
     public final FirebaseAuth mAuth;
@@ -25,11 +26,13 @@ public class Main extends Application {
     private AnchorPane root;
 
     public Main() throws IOException {
+
         FileInputStream serviceAccount =
-                new FileInputStream("service-account-file.json");
+                new FileInputStream("/home/moh/Downloads/chat-app-9bfae-firebase-adminsdk-7zez9-7e02c9d5fd.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setDatabaseUrl("https://chat-app-9bfae-default-rtdb.firebaseio.com")
                 .build();
 
         app = FirebaseApp.initializeApp(options);
